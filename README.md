@@ -145,6 +145,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions, issues, suggestions, or requests for custom bots feel free to open an issue or contact the maintainers.
 
-- **Maintainer**: [TheLawDash](https://github.com/TheLawDash))
+- **Maintainer**: [TheLawDash](https://github.com/TheLawDash)
 - **Email**: thelawdashdev@gmail.com
 - **Discord** : thelawdash
