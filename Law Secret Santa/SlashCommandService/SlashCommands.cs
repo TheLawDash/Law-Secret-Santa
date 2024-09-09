@@ -31,7 +31,7 @@ namespace Law_Secret_Santa.SlashCommandService
             var secretSantaEvent = DatabaseFunctions.GetActiveEvent(connection);
             if (secretSantaEvent != new EventData() && secretSantaEvent.ActiveEvent != "NoEntries")
             {
-                await ctx.CreateResponseAsync("There is already an active secret santa, if you want to reset it, please type /stop-secret-santa...", true);
+                await ctx.CreateResponseAsync("There is already an active secret santa, if you want to reset it, please type /cancel-secret-santa...", true);
                 return;
             }
             try
