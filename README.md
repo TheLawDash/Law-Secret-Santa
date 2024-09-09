@@ -18,7 +18,7 @@
 
 ## Table of Contents
 
-- [Installation](#installation)
+- [Installation](#building-and-installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Contributing](#contributing)
