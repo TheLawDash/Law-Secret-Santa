@@ -29,6 +29,8 @@
 
 To set up this project locally, follow these steps.
 
+Access Release (exe) [HERE](https://github.com/TheLawDash/Law-Secret-Santa/releases/tag/Release)
+
 1. **Extract the binaries**
 
    Right click on `Secret Santa Discord Bot.zip` and click `Extract`.
