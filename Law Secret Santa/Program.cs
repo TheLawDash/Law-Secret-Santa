@@ -153,6 +153,7 @@ namespace Law_Secret_Santa
                 return Task.CompletedTask;
             if (secretSantaEvent.StartedExchange =="1")
             {
+                //Instantiate the timer to check for deadline
                 EventTimer = new System.Timers.Timer();
                 EventTimer.Interval = 10000;
                 EventTimer.Elapsed += CheckEventDeadline;
@@ -190,6 +191,7 @@ namespace Law_Secret_Santa
                         responseString += $"{santaDiscordUser.Value.Nickname} ({santaDiscordUser.Value.Username}) ({santaDiscordUser.Value.Id}) has not changed their purchase value to done.\n\n";
                     }
                 }
+                //The funky looking string below includes the multi-colored merry christmas, that's all
                 responseString += "Thank you for using the Secret Santa Discord Bot, have a \u001b[2;31m\u001b[0m\u001b[1;2m\u001b[1;31mM\u001b[0m\u001b[1;32me\u001b[1;34mr\u001b[0m\u001b[1;32m\u001b[0m\u001b[1;32mr\u001b[0m\u001b[1;31my\u001b[0m \u001b[1;31mC\u001b[0m\u001b[1;34m\u001b[1;32mh\u001b[0m\u001b[1;34m\u001b[0m\u001b[1;32m\u001b[1;34mr\u001b[0m\u001b[1;32m\u001b[0m\u001b[1;31mi\u001b[0m\u001b[1;32ms\u001b[0m\u001b[1;34mt\u001b[0m\u001b[1;31mm\u001b[0m\u001b[1;32ma\u001b[0m\u001b[1;31ms\u001b[0m\u001b[1;2m\u001b[1;2m\u001b[1;2m\u001b[1;2m\u001b[0m\u001b[0m\u001b[0m\u001b[0m\u001b[0m\r\n```";
                 await santaOwnerDiscord.Value.SendMessageAsync(responseString);
                 EventTimer.Stop();
@@ -227,7 +229,7 @@ namespace Law_Secret_Santa
                                     Title = "You've been signed up!",
                                     Description = $"You've been signed up to participate in the {args.Guild.Name} secret santa event.\n\n\n" +
         $"Please use the /register-address command and enter your address in order to be successfully signed up!\n\n" +
-                                    "\u200B\n\u200B\n\u200B",
+                                    "\u200B\n\u200B\n\u200B", //Added for extra spacing
                                     Thumbnail = new DiscordEmbedBuilder.EmbedThumbnail
                                     {
                                         Url = "https://i.postimg.cc/SNY8JCKK/Law-Secret-Santa.png",

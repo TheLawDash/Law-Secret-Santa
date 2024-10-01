@@ -307,11 +307,11 @@ namespace Law_Secret_Santa.SlashCommandService
         }
 
         [SlashCommand("get-address", "This will provide you wiht the address of the person you're giving a gift to.")]
-        public async Task GetSubjectAddressAsync(InteractionContext ctx)
+        public async Task GetSubjectAddressAsync(InteractionContext ctx) // Gets the address of the santa's subject for the santa
         {
             SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseLocation};Version=3;");
             connection.Open();
-            var secretSantaEvent = DatabaseFunctions.GetActiveEvent(connection);
+            var secretSantaEvent = DatabaseFunctions.GetActiveEvent(connection); //Get's event ID from the database
             if (secretSantaEvent.ActiveEvent == "NoEntries")
             {
                 await ctx.CreateResponseAsync("There is no active secret santa instances.", true);
@@ -322,8 +322,8 @@ namespace Law_Secret_Santa.SlashCommandService
                 await ctx.CreateResponseAsync("The secret santa event has not assigned you anyone yet.", true);
                 return;
             }
-            string subjectId = DatabaseFunctions.GetSubjectId(connection, ctx.Interaction.User.Id.ToString(), secretSantaEvent.EventId);
-            var subjectUser = DatabaseFunctions.GetUserData(connection, secretSantaEvent.EventId, subjectId);
+            string subjectId = DatabaseFunctions.GetSubjectId(connection, ctx.Interaction.User.Id.ToString(), secretSantaEvent.EventId); //Gets the santa's subject's id from the database
+            var subjectUser = DatabaseFunctions.GetUserData(connection, secretSantaEvent.EventId, subjectId); //Gets the santa's subject's user object from the database
             if (subjectUser != new UserObject())
             {
                 await ctx.CreateResponseAsync($"You need to purchase something for <@{subjectId}>, their address is `{subjectUser.StreetAddress}`", true);
@@ -335,7 +335,7 @@ namespace Law_Secret_Santa.SlashCommandService
             InteractionContext ctx,
             [Choice("Pending", "Pending")]
             [Choice("Done", "Done")]
-            [Option("status", "Choose Gift Status")] string status)
+            [Option("status", "Choose Gift Status")] string status) //Updates the purchase status of the gifter.
         {
             SQLiteConnection connection = new SQLiteConnection($"Data Source={DatabaseLocation};Version=3;");
             connection.Open();
@@ -350,7 +350,7 @@ namespace Law_Secret_Santa.SlashCommandService
                 await ctx.CreateResponseAsync("The secret santa event has not assigned you anyone yet.", true);
                 return;
             }
-            bool success = DatabaseFunctions.UpdateGiftStatus(connection, secretSantaEvent.EventId, ctx.Interaction.User.Id.ToString(), status);
+            bool success = DatabaseFunctions.UpdateGiftStatus(connection, secretSantaEvent.EventId, ctx.Interaction.User.Id.ToString(), status); //Changes database entry value for GiftStatus.
             if (success)
             {
                 await ctx.CreateResponseAsync("Update your gift status.", true);
